@@ -3,6 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import styles from '../styles';
 
+const validateForm = todo => todo.text.trim().length > 0;
+
 const TodoForm = ({
   newTodo,
   error,
@@ -31,6 +33,7 @@ const TodoForm = ({
       onClick={onTodoAdd}
       style={styles.addButton}
       primary={true}
+      disabled={!validateForm(newTodo)}
     />
   </div>
 );
