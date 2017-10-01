@@ -9,8 +9,7 @@ import '../index.css';
 import TodoFormContainer from './TodoFormContainer';
 import TodoList from '../components/TodoList';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
-import { completeTodo, toggleFilter } from '../actions/index';
+import { completeTodo, toggleEdit, toggleFilter, addTodo } from '../actions';
 
 const App = ({
   todos,
@@ -18,13 +17,14 @@ const App = ({
   onTodoAdd,
   onTodoComplete,
   onFilterToggle,
+  onEditToggle,
 }) => (
   <MuiThemeProvider>
     <div>
       <AppBar title="Material TODO" />
       <Paper style={styles.todoList}>
         <div className="row">
-          <TodoFormContainer onTodoAdd={onTodoAdd} />
+          <TodoFormContainer onTodoAdd={onTodoAdd} isEdit={false} />
         </div>
 
         <div className="row">
@@ -39,7 +39,12 @@ const App = ({
         </div>
 
         <div className="row">
-          <TodoList todos={todos} onTodoComplete={onTodoComplete} />
+          <TodoList
+            todos={todos}
+            onTodoComplete={onTodoComplete}
+            onTodoAdd={onTodoAdd}
+            onEditToggle={onEditToggle}
+          />
         </div>
       </Paper>
     </div>
@@ -80,6 +85,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onFilterToggle: () => {
     dispatch(toggleFilter());
+  },
+  onEditToggle: todoId => {
+    dispatch(toggleEdit(todoId));
   },
 });
 

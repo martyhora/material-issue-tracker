@@ -1,30 +1,58 @@
 import * as React from 'react';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
+import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import styles from '../styles';
+import TodoFormContainer from '../containers/TodoFormContainer';
 
-const Todo = ({ todo, onTodoComplete }) => (
+const Todo = ({ todo, onTodoComplete, onEditToggle, onTodoAdd }) => (
   <Paper style={styles.todo} className="row">
     <div
       style={{
         float: 'left',
         paddingTop: '5px',
-        textDecoration: todo.completed ? 'line-through' : '',
-        color: todo.completed ? 'rgba(0, 0, 0, 0.3)' : '#000',
+        marginTop: todo.isEdit ? '-25px' : 0,
+        width: todo.isEdit ? '100%' : 'auto',
       }}
     >
-      {todo.text}
+      {todo.isEdit ? (
+        <TodoFormContainer onTodoAdd={onTodoAdd} isEdit={true} todo={todo} />
+      ) : (
+        <span
+          style={{
+            textDecoration: todo.completed ? 'line-through' : '',
+            color: todo.completed ? 'rgba(0, 0, 0, 0.3)' : '#000',
+          }}
+        >
+          {todo.text}
+        </span>
+      )}
     </div>
 
-    <div style={styles.todoActions}>
-      <Checkbox
-        label=""
-        checked={todo.completed}
-        onCheck={() => {
-          onTodoComplete(todo.id);
+    {!todo.isEdit && (
+      <div
+        style={{
+          float: 'right',
+          marginTop: todo.isEdit ? '15px' : 0,
         }}
-      />
-    </div>
+      >
+        <ModeEditIcon
+          style={styles.icon}
+          onClick={() => {
+            onEditToggle(todo.id);
+          }}
+        />
+
+        <Checkbox
+          label=""
+          checked={todo.completed}
+          onCheck={() => {
+            onTodoComplete(todo.id);
+          }}
+          style={styles.icon}
+        />
+      </div>
+    )}
   </Paper>
 );
 

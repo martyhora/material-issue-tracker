@@ -28,6 +28,11 @@ const styles = {
   todoActions: {
     float: 'right',
   },
+  icon: {
+    float: 'left',
+    cursor: 'pointer',
+    width: '40px',
+  },
 };
 
 export default styles;

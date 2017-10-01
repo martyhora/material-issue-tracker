@@ -2,21 +2,21 @@ import * as React from 'react';
 import TodoForm from '../components/TodoForm';
 
 const defaultTodo = {
-  newTodoText: '',
+  text: '',
 };
 
 export default class TodoFormContainer extends React.Component {
   state = {
-    newTodo: defaultTodo,
+    newTodo: this.props.todo ? this.props.todo : defaultTodo,
     error: false,
   };
 
-  onNewTodoTextUpdate(newTodoText) {
-    this.setState({ newTodo: { ...this.state.newTodoText, newTodoText } });
+  onNewTodoTextUpdate(text) {
+    this.setState({ newTodo: { ...this.state.newTodo, text } });
   }
 
   onTodoAdd() {
-    if (this.state.newTodo.newTodoText.trim() === '') {
+    if (this.state.newTodo.text.trim() === '') {
       this.setState({ error: true });
 
       return;
@@ -40,6 +40,7 @@ export default class TodoFormContainer extends React.Component {
       <TodoForm
         newTodo={this.state.newTodo}
         error={this.state.error}
+        isEdit={this.props.isEdit}
         onTodoAdd={this.onTodoAdd.bind(this)}
         onNewTodoTextUpdate={this.onNewTodoTextUpdate.bind(this)}
         onTodoSubmit={this.onTodoSubmit.bind(this)}

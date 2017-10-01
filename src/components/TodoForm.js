@@ -9,13 +9,14 @@ const TodoForm = ({
   onNewTodoTextUpdate,
   onTodoAdd,
   onTodoSubmit,
+  isEdit,
 }) => (
   <div>
     <TextField
-      floatingLabelText="New todo"
+      floatingLabelText="Todo description"
       style={styles.textField}
       fullWidth={true}
-      value={newTodo.newTodoText}
+      value={newTodo.text}
       onChange={e => {
         onNewTodoTextUpdate(e.currentTarget.value);
       }}
@@ -26,7 +27,7 @@ const TodoForm = ({
     />
     <RaisedButton
       className="add-todo-button"
-      label="Add todo"
+      label={`${isEdit ? 'Edit' : 'Add'} todo`}
       onClick={onTodoAdd}
       style={styles.addButton}
       primary={true}

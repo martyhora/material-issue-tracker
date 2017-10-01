@@ -1,9 +1,14 @@
-import { ADD_TODO, COMPLETE_TODO, TOGGLE_FILTER } from './actionTypes';
+import {
+  ADD_TODO,
+  COMPLETE_TODO,
+  TOGGLE_EDIT,
+  TOGGLE_FILTER,
+} from './actionTypes';
 
-export const addTodo = newTodo => {
+export const addTodo = todo => {
   return {
     type: ADD_TODO,
-    newTodo,
+    todo,
   };
 };
 
@@ -17,5 +22,12 @@ export const completeTodo = todoId => {
 export const toggleFilter = () => {
   return {
     type: TOGGLE_FILTER,
+  };
+};
+
+export const toggleEdit = todoId => {
+  return {
+    type: TOGGLE_EDIT,
+    todoId,
   };
 };
