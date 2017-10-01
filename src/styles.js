@@ -31,7 +31,7 @@ const styles = {
   icon: {
     float: 'left',
     cursor: 'pointer',
-    width: '40px',
+    margin: '0 2px',
   },
 };
 

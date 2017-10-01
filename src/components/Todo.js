@@ -2,10 +2,17 @@ import * as React from 'react';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
 import TodoFormContainer from '../containers/TodoFormContainer';
 
-const Todo = ({ todo, onTodoComplete, onEditToggle, onTodoAdd }) => (
+const Todo = ({
+  todo,
+  onTodoComplete,
+  onEditToggle,
+  onTodoAdd,
+  onTodoRemove,
+}) => (
   <Paper style={styles.todo} className="row">
     <div
       style={{
@@ -42,14 +49,19 @@ const Todo = ({ todo, onTodoComplete, onEditToggle, onTodoAdd }) => (
             onEditToggle(todo.id);
           }}
         />
-
+        <DeleteIcon
+          style={styles.icon}
+          onClick={() => {
+            onTodoRemove(todo.id);
+          }}
+        />
         <Checkbox
           label=""
           checked={todo.completed}
           onCheck={() => {
             onTodoComplete(todo.id);
           }}
-          style={styles.icon}
+          style={{ ...styles.icon, width: '40px' }}
         />
       </div>
     )}

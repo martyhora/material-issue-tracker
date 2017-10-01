@@ -9,7 +9,13 @@ import '../index.css';
 import TodoFormContainer from './TodoFormContainer';
 import TodoList from '../components/TodoList';
 import { connect } from 'react-redux';
-import { completeTodo, toggleEdit, toggleFilter, addTodo } from '../actions';
+import {
+  completeTodo,
+  toggleEdit,
+  toggleFilter,
+  addTodo,
+  removeTodo,
+} from '../actions';
 
 const App = ({
   todos,
@@ -18,6 +24,7 @@ const App = ({
   onTodoComplete,
   onFilterToggle,
   onEditToggle,
+  onTodoRemove,
 }) => (
   <MuiThemeProvider>
     <div>
@@ -44,6 +51,7 @@ const App = ({
             onTodoComplete={onTodoComplete}
             onTodoAdd={onTodoAdd}
             onEditToggle={onEditToggle}
+            onTodoRemove={onTodoRemove}
           />
         </div>
       </Paper>
@@ -88,6 +96,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onEditToggle: todoId => {
     dispatch(toggleEdit(todoId));
+  },
+  onTodoRemove: todoId => {
+    dispatch(removeTodo(todoId));
   },
 });
 

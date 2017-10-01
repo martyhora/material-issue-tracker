@@ -1,4 +1,9 @@
-import { ADD_TODO, COMPLETE_TODO, TOGGLE_EDIT } from '../actions/actionTypes';
+import {
+  ADD_TODO,
+  COMPLETE_TODO,
+  REMOVE_TODO,
+  TOGGLE_EDIT,
+} from '../actions/actionTypes';
 
 let id = 1;
 
@@ -26,6 +31,8 @@ const todos = (state = [], action) => {
         todo =>
           todo.id === action.todoId ? { ...todo, isEdit: !todo.isEdit } : todo
       );
+    case REMOVE_TODO:
+      return state.filter(todo => todo.id !== action.todoId);
     default:
       return state;
   }

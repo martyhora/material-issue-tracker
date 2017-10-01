@@ -1,6 +1,7 @@
 import {
   ADD_TODO,
   COMPLETE_TODO,
+  REMOVE_TODO,
   TOGGLE_EDIT,
   TOGGLE_FILTER,
 } from './actionTypes';
@@ -28,6 +29,13 @@ export const toggleFilter = () => {
 export const toggleEdit = todoId => {
   return {
     type: TOGGLE_EDIT,
+    todoId,
+  };
+};
+
+export const removeTodo = todoId => {
+  return {
+    type: REMOVE_TODO,
     todoId,
   };
 };
