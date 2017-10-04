@@ -6,6 +6,7 @@ import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
 import IssueFormContainer from '../containers/IssueFormContainer';
 import { formatDate } from './IssueForm';
+import { red500 } from 'material-ui/styles/colors';
 
 const Issue = ({
   issue,
@@ -41,7 +42,12 @@ const Issue = ({
             {issue.text}
           </div>
           <div
-            style={{ marginTop: '0.3em', float: 'right', fontSize: '0.7em' }}
+            style={{
+              marginTop: '0.3em',
+              float: 'right',
+              fontSize: '0.7em',
+              color: new Date() >= issue.dueDate ? red500 : '#000',
+            }}
           >
             {issue.dueDate ? `${formatDate(issue.dueDate)}` : ''}
           </div>
