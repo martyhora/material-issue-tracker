@@ -16,17 +16,21 @@ import {
   addIssue,
   removeIssue,
   toggleIssueStar,
+  updateFulltextFilter,
 } from '../actions';
+import FilterForm from '../components/FilterForm';
 
 const App = ({
   issues,
   filterToggled,
+  fulltextFilter,
   onIssueAdd,
   onIssueComplete,
   onFilterToggle,
   onEditToggle,
   onIssueRemove,
   onIssueStarToggle,
+  onFulltextFilterUpdate,
 }) => (
   <MuiThemeProvider>
     <div>
@@ -36,34 +40,37 @@ const App = ({
           <IssueFormContainer onIssueAdd={onIssueAdd} isEdit={false} />
         </div>
 
-        <div className="row">
-          <div style={styles.filter}>
-            <Toggle
-              label="Hide completed issues"
-              labelPosition="right"
-              toggled={filterToggled}
-              onToggle={onFilterToggle}
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <IssueList
-            issues={issues}
-            onIssueComplete={onIssueComplete}
-            onIssueAdd={onIssueAdd}
-            onEditToggle={onEditToggle}
-            onIssueRemove={onIssueRemove}
-            onIssueStarToggle={onIssueStarToggle}
+        <div className="row" style={styles.filter}>
+          <Toggle
+            label="Hide completed issues"
+            labelPosition="right"
+            toggled={filterToggled}
+            onToggle={onFilterToggle}
           />
         </div>
+
+        <FilterForm
+          onTextUpdate={onFulltextFilterUpdate}
+          text={fulltextFilter}
+        />
+
+        <IssueList
+          issues={issues}
+          onIssueComplete={onIssueComplete}
+          onIssueAdd={onIssueAdd}
+          onEditToggle={onEditToggle}
+          onIssueRemove={onIssueRemove}
+          onIssueStarToggle={onIssueStarToggle}
+        />
       </Paper>
     </div>
   </MuiThemeProvider>
 );
 
 const mapStateToProps = state => {
-  let issues = [...state.issues];
+  let issues = [...state.issues].filter(
+    issue => issue.text.indexOf(state.fulltextFilter) > -1
+  );
 
   if (state.filterToggled) {
     issues = issues.filter(issue => !issue.completed);
@@ -95,6 +102,7 @@ const mapStateToProps = state => {
 
   return {
     issues,
+    fulltextFilter: state.fulltextFilter,
     filterToggled: state.filterToggled,
   };
 };
@@ -117,6 +125,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onIssueStarToggle: issueId => {
     dispatch(toggleIssueStar(issueId));
+  },
+  onFulltextFilterUpdate: text => {
+    dispatch(updateFulltextFilter(text));
   },
 });
 

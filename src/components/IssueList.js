@@ -9,7 +9,7 @@ const IssueList = ({
   onIssueRemove,
   onIssueStarToggle,
 }) => (
-  <div>
+  <div className="row">
     {issues.map((issue, i) => (
       <Issue
         key={i}

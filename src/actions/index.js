@@ -5,6 +5,7 @@ import {
   TOGGLE_EDIT,
   TOGGLE_FILTER,
   TOGGLE_ISSUE_STAR,
+  UPDATE_FULLTEXT_FILTER,
 } from './actionTypes';
 
 export const addIssue = issue => {
@@ -45,5 +46,12 @@ export const toggleIssueStar = issueId => {
   return {
     type: TOGGLE_ISSUE_STAR,
     issueId,
+  };
+};
+
+export const updateFulltextFilter = text => {
+  return {
+    type: UPDATE_FULLTEXT_FILTER,
+    text,
   };
 };

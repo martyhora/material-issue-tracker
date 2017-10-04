@@ -8,6 +8,7 @@ import IssueActions from './IssueActions';
 
 const Issue = ({
   issue,
+  issueFulltext,
   onIssueComplete,
   onEditToggle,
   onIssueAdd,
