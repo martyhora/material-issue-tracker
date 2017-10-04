@@ -3,6 +3,7 @@ import IssueForm from '../components/IssueForm';
 
 const defaultIssue = {
   text: '',
+  dueDate: null,
 };
 
 export default class IssueFormContainer extends React.Component {
@@ -13,6 +14,10 @@ export default class IssueFormContainer extends React.Component {
 
   onNewIssueTextUpdate(text) {
     this.setState({ newIssue: { ...this.state.newIssue, text } });
+  }
+
+  onNewIssueDueDateUpdate(dueDate) {
+    this.setState({ newIssue: { ...this.state.newIssue, dueDate } });
   }
 
   onIssueAdd() {
@@ -43,6 +48,7 @@ export default class IssueFormContainer extends React.Component {
         isEdit={this.props.isEdit}
         onIssueAdd={this.onIssueAdd.bind(this)}
         onNewIssueTextUpdate={this.onNewIssueTextUpdate.bind(this)}
+        onNewIssueDueDateUpdate={this.onNewIssueDueDateUpdate.bind(this)}
         onIssueSubmit={this.onIssueSubmit.bind(this)}
       />
     );

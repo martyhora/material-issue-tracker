@@ -1,14 +1,19 @@
 import * as React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
 import styles from '../styles';
 
 const validateForm = issue => issue.text.trim().length > 0;
+
+export const formatDate = date =>
+  `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
 const IssueForm = ({
   newIssue,
   error,
   onNewIssueTextUpdate,
+  onNewIssueDueDateUpdate,
   onIssueAdd,
   onIssueSubmit,
   isEdit,
@@ -26,6 +31,15 @@ const IssueForm = ({
         onIssueSubmit(e.key);
       }}
       errorText={error ? 'Issue description is required' : ''}
+    />
+    <DatePicker
+      style={styles.datepicker}
+      formatDate={formatDate}
+      value={newIssue.dueDate}
+      onChange={(e, date) => {
+        onNewIssueDueDateUpdate(date);
+      }}
+      hintText="Due date"
     />
     <RaisedButton
       className="add-issue-button"

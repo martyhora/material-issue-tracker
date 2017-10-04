@@ -5,6 +5,7 @@ import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
 import IssueFormContainer from '../containers/IssueFormContainer';
+import { formatDate } from './IssueForm';
 
 const Issue = ({
   issue,
@@ -19,20 +20,32 @@ const Issue = ({
         float: 'left',
         paddingTop: '5px',
         marginTop: issue.isEdit ? '-25px' : 0,
-        width: issue.isEdit ? '100%' : 'auto',
+        width: issue.isEdit ? '100%' : '87%',
       }}
     >
       {issue.isEdit ? (
-        <IssueFormContainer onIssueAdd={onIssueAdd} isEdit={true} issue={issue} />
+        <IssueFormContainer
+          onIssueAdd={onIssueAdd}
+          isEdit={true}
+          issue={issue}
+        />
       ) : (
-        <span
-          style={{
-            textDecoration: issue.completed ? 'line-through' : '',
-            color: issue.completed ? 'rgba(0, 0, 0, 0.3)' : '#000',
-          }}
-        >
-          {issue.text}
-        </span>
+        <div className="row">
+          <div
+            style={{
+              textDecoration: issue.completed ? 'line-through' : '',
+              color: issue.completed ? 'rgba(0, 0, 0, 0.3)' : '#000',
+              float: 'left',
+            }}
+          >
+            {issue.text}
+          </div>
+          <div
+            style={{ marginTop: '0.3em', float: 'right', fontSize: '0.7em' }}
+          >
+            {issue.dueDate ? `${formatDate(issue.dueDate)}` : ''}
+          </div>
+        </div>
       )}
     </div>
 

@@ -6,14 +6,15 @@ const styles = {
   },
   textField: {
     float: 'left',
-    width: '80%',
+    width: '60%',
+    marginRight: '15px',
   },
   addButton: {
     float: 'right',
     marginTop: '30px',
   },
   issueList: {
-    width: '40%',
+    width: '55%',
     padding: '1em',
     margin: 'auto',
     marginTop: '100px',
@@ -32,6 +33,14 @@ const styles = {
     float: 'left',
     cursor: 'pointer',
     margin: '0 2px',
+  },
+  datepicker: {
+    marginTop: '24px',
+    float: 'left',
+  },
+  date: {
+    color: 'rgba(0, 0, 0, 0.3)',
+    fontSize: '0.65em',
   },
 };
 

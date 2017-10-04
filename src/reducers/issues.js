@@ -19,7 +19,7 @@ const issues = (state = [], action) => {
         );
       }
 
-      return [...state, { text: action.issue.text, id: id++, completed: false }];
+      return [...state, { ...action.issue, id: id++, completed: false }];
     case COMPLETE_ISSUE:
       return state.map(issue => {
         return issue.id === action.issueId
@@ -29,7 +29,9 @@ const issues = (state = [], action) => {
     case TOGGLE_EDIT:
       return state.map(
         issue =>
-          issue.id === action.issueId ? { ...issue, isEdit: !issue.isEdit } : issue
+          issue.id === action.issueId
+            ? { ...issue, isEdit: !issue.isEdit }
+            : issue
       );
     case REMOVE_ISSUE:
       return state.filter(issue => issue.id !== action.issueId);
