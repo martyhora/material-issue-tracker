@@ -3,7 +3,7 @@ import {
   COMPLETE_ISSUE,
   REMOVE_ISSUE,
   TOGGLE_EDIT,
-  TOGGLE_FILTER,
+  TOGGLE_FILTER, TOGGLE_ISSUE_STAR,
 } from './actionTypes';
 
 export const addIssue = issue => {
@@ -36,6 +36,13 @@ export const toggleEdit = issueId => {
 export const removeIssue = issueId => {
   return {
     type: REMOVE_ISSUE,
+    issueId,
+  };
+};
+
+export const toggleIssueStar = issueId => {
+  return {
+    type: TOGGLE_ISSUE_STAR,
     issueId,
   };
 };

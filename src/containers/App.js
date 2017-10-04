@@ -15,6 +15,7 @@ import {
   toggleFilter,
   addIssue,
   removeIssue,
+  toggleIssueStar,
 } from '../actions';
 
 const App = ({
@@ -25,6 +26,7 @@ const App = ({
   onFilterToggle,
   onEditToggle,
   onIssueRemove,
+  onIssueStarToggle,
 }) => (
   <MuiThemeProvider>
     <div>
@@ -52,6 +54,7 @@ const App = ({
             onIssueAdd={onIssueAdd}
             onEditToggle={onEditToggle}
             onIssueRemove={onIssueRemove}
+            onIssueStarToggle={onIssueStarToggle}
           />
         </div>
       </Paper>
@@ -66,6 +69,16 @@ const mapStateToProps = state => {
     issues = issues.filter(issue => !issue.completed);
   } else {
     issues.sort((a, b) => {
+      if (a.isStarred > b.isStarred) {
+        return -1;
+      }
+
+      if (a.isStarred < b.isStarred) {
+        return 1;
+      }
+
+      return 0;
+    }).sort((a, b) => {
       if (a.completed > b.completed) {
         return 1;
       }
@@ -99,6 +112,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onIssueRemove: issueId => {
     dispatch(removeIssue(issueId));
+  },
+  onIssueStarToggle: issueId => {
+    dispatch(toggleIssueStar(issueId));
   },
 });
 

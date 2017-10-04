@@ -4,6 +4,7 @@ import IssueForm from '../components/IssueForm';
 const defaultIssue = {
   text: '',
   dueDate: null,
+  isStarred: false,
 };
 
 export default class IssueFormContainer extends React.Component {

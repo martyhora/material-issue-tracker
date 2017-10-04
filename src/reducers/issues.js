@@ -2,7 +2,7 @@ import {
   ADD_ISSUE,
   COMPLETE_ISSUE,
   REMOVE_ISSUE,
-  TOGGLE_EDIT,
+  TOGGLE_EDIT, TOGGLE_ISSUE_STAR,
 } from '../actions/actionTypes';
 
 let id = 1;
@@ -24,6 +24,12 @@ const issues = (state = [], action) => {
       return state.map(issue => {
         return issue.id === action.issueId
           ? { ...issue, completed: !issue.completed }
+          : issue;
+      });
+    case TOGGLE_ISSUE_STAR:
+      return state.map(issue => {
+        return issue.id === action.issueId
+          ? { ...issue, isStarred: !issue.isStarred }
           : issue;
       });
     case TOGGLE_EDIT:

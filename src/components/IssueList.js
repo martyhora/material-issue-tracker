@@ -7,6 +7,7 @@ const IssueList = ({
   onEditToggle,
   onIssueAdd,
   onIssueRemove,
+  onIssueStarToggle,
 }) => (
   <div>
     {issues.map((issue, i) => (
@@ -17,6 +18,7 @@ const IssueList = ({
         onEditToggle={onEditToggle}
         onIssueAdd={onIssueAdd}
         onIssueRemove={onIssueRemove}
+        onIssueStarToggle={onIssueStarToggle}
       />
     ))}
   </div>

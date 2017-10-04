@@ -7,6 +7,7 @@ import styles from '../styles';
 import IssueFormContainer from '../containers/IssueFormContainer';
 import { formatDate } from './IssueForm';
 import { red500 } from 'material-ui/styles/colors';
+import StarToggle from './StarToggle';
 
 const Issue = ({
   issue,
@@ -14,6 +15,7 @@ const Issue = ({
   onEditToggle,
   onIssueAdd,
   onIssueRemove,
+  onIssueStarToggle,
 }) => (
   <Paper style={styles.issue} className="row">
     <div
@@ -21,7 +23,7 @@ const Issue = ({
         float: 'left',
         paddingTop: '5px',
         marginTop: issue.isEdit ? '-25px' : 0,
-        width: issue.isEdit ? '100%' : '87%',
+        width: issue.isEdit ? '100%' : '84%',
       }}
     >
       {issue.isEdit ? (
@@ -60,8 +62,15 @@ const Issue = ({
         style={{
           float: 'right',
           marginTop: issue.isEdit ? '15px' : 0,
+          width: '14%',
         }}
       >
+        <StarToggle
+          toggled={issue.isStarred}
+          onToggle={() => {
+            onIssueStarToggle(issue.id);
+          }}
+        />
         <ModeEditIcon
           style={styles.icon}
           onClick={() => {
