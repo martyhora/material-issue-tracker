@@ -1,5 +1,5 @@
 const styles = {
-  todo: {
+  issue: {
     padding: '1em',
     marginTop: '0.75em',
     marginBottom: '0.75em',
@@ -12,7 +12,7 @@ const styles = {
     float: 'right',
     marginTop: '30px',
   },
-  todoList: {
+  issueList: {
     width: '40%',
     padding: '1em',
     margin: 'auto',
@@ -25,7 +25,7 @@ const styles = {
     width: '100%',
     padding: '20px 0 10px 0',
   },
-  todoActions: {
+  issueActions: {
     float: 'right',
   },
   icon: {

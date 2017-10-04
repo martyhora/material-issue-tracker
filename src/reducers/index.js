@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+import issues from './issues';
 import filterToggled from './filterToggled';
 
 const reducers = combineReducers({
-  todos,
+  issues,
   filterToggled,
 });
 

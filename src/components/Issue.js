@@ -4,62 +4,62 @@ import Checkbox from 'material-ui/Checkbox';
 import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
-import TodoFormContainer from '../containers/TodoFormContainer';
+import IssueFormContainer from '../containers/IssueFormContainer';
 
-const Todo = ({
-  todo,
-  onTodoComplete,
+const Issue = ({
+  issue,
+  onIssueComplete,
   onEditToggle,
-  onTodoAdd,
-  onTodoRemove,
+  onIssueAdd,
+  onIssueRemove,
 }) => (
-  <Paper style={styles.todo} className="row">
+  <Paper style={styles.issue} className="row">
     <div
       style={{
         float: 'left',
         paddingTop: '5px',
-        marginTop: todo.isEdit ? '-25px' : 0,
-        width: todo.isEdit ? '100%' : 'auto',
+        marginTop: issue.isEdit ? '-25px' : 0,
+        width: issue.isEdit ? '100%' : 'auto',
       }}
     >
-      {todo.isEdit ? (
-        <TodoFormContainer onTodoAdd={onTodoAdd} isEdit={true} todo={todo} />
+      {issue.isEdit ? (
+        <IssueFormContainer onIssueAdd={onIssueAdd} isEdit={true} issue={issue} />
       ) : (
         <span
           style={{
-            textDecoration: todo.completed ? 'line-through' : '',
-            color: todo.completed ? 'rgba(0, 0, 0, 0.3)' : '#000',
+            textDecoration: issue.completed ? 'line-through' : '',
+            color: issue.completed ? 'rgba(0, 0, 0, 0.3)' : '#000',
           }}
         >
-          {todo.text}
+          {issue.text}
         </span>
       )}
     </div>
 
-    {!todo.isEdit && (
+    {!issue.isEdit && (
       <div
         style={{
           float: 'right',
-          marginTop: todo.isEdit ? '15px' : 0,
+          marginTop: issue.isEdit ? '15px' : 0,
         }}
       >
         <ModeEditIcon
           style={styles.icon}
           onClick={() => {
-            onEditToggle(todo.id);
+            onEditToggle(issue.id);
           }}
         />
         <DeleteIcon
           style={styles.icon}
           onClick={() => {
-            onTodoRemove(todo.id);
+            onIssueRemove(issue.id);
           }}
         />
         <Checkbox
           label=""
-          checked={todo.completed}
+          checked={issue.completed}
           onCheck={() => {
-            onTodoComplete(todo.id);
+            onIssueComplete(issue.id);
           }}
           style={{ ...styles.icon, width: '40px' }}
         />
@@ -68,4 +68,4 @@ const Todo = ({
   </Paper>
 );
 
-export default Todo;
+export default Issue;

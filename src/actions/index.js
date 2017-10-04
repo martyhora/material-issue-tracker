@@ -1,22 +1,22 @@
 import {
-  ADD_TODO,
-  COMPLETE_TODO,
-  REMOVE_TODO,
+  ADD_ISSUE,
+  COMPLETE_ISSUE,
+  REMOVE_ISSUE,
   TOGGLE_EDIT,
   TOGGLE_FILTER,
 } from './actionTypes';
 
-export const addTodo = todo => {
+export const addIssue = issue => {
   return {
-    type: ADD_TODO,
-    todo,
+    type: ADD_ISSUE,
+    issue,
   };
 };
 
-export const completeTodo = todoId => {
+export const completeIssue = issueId => {
   return {
-    type: COMPLETE_TODO,
-    todoId,
+    type: COMPLETE_ISSUE,
+    issueId,
   };
 };
 
@@ -26,16 +26,16 @@ export const toggleFilter = () => {
   };
 };
 
-export const toggleEdit = todoId => {
+export const toggleEdit = issueId => {
   return {
     type: TOGGLE_EDIT,
-    todoId,
+    issueId,
   };
 };
 
-export const removeTodo = todoId => {
+export const removeIssue = issueId => {
   return {
-    type: REMOVE_TODO,
-    todoId,
+    type: REMOVE_ISSUE,
+    issueId,
   };
 };

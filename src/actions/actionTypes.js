@@ -1,5 +1,5 @@
-export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
+export const ADD_ISSUE = 'ADD_ISSUE';
+export const COMPLETE_ISSUE = 'COMPLETE_ISSUE';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const TOGGLE_EDIT = 'TOGGLE_EDIT';
-export const REMOVE_TODO = 'REMOVE_TODO';
+export const REMOVE_ISSUE = 'REMOVE_ISSUE';

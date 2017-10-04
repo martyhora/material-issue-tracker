@@ -6,38 +6,38 @@ import Paper from 'material-ui/Paper';
 import Toggle from 'material-ui/Toggle';
 import styles from '../styles';
 import '../index.css';
-import TodoFormContainer from './TodoFormContainer';
-import TodoList from '../components/TodoList';
+import IssueFormContainer from './IssueFormContainer';
+import IssueList from '../components/IssueList';
 import { connect } from 'react-redux';
 import {
-  completeTodo,
+  completeIssue,
   toggleEdit,
   toggleFilter,
-  addTodo,
-  removeTodo,
+  addIssue,
+  removeIssue,
 } from '../actions';
 
 const App = ({
-  todos,
+  issues,
   filterToggled,
-  onTodoAdd,
-  onTodoComplete,
+  onIssueAdd,
+  onIssueComplete,
   onFilterToggle,
   onEditToggle,
-  onTodoRemove,
+  onIssueRemove,
 }) => (
   <MuiThemeProvider>
     <div>
-      <AppBar title="Material TODO" />
-      <Paper style={styles.todoList}>
+      <AppBar title="Material Issue Tracker" />
+      <Paper style={styles.issueList}>
         <div className="row">
-          <TodoFormContainer onTodoAdd={onTodoAdd} isEdit={false} />
+          <IssueFormContainer onIssueAdd={onIssueAdd} isEdit={false} />
         </div>
 
         <div className="row">
           <div style={styles.filter}>
             <Toggle
-              label="Hide completed todos"
+              label="Hide completed issues"
               labelPosition="right"
               toggled={filterToggled}
               onToggle={onFilterToggle}
@@ -46,12 +46,12 @@ const App = ({
         </div>
 
         <div className="row">
-          <TodoList
-            todos={todos}
-            onTodoComplete={onTodoComplete}
-            onTodoAdd={onTodoAdd}
+          <IssueList
+            issues={issues}
+            onIssueComplete={onIssueComplete}
+            onIssueAdd={onIssueAdd}
             onEditToggle={onEditToggle}
-            onTodoRemove={onTodoRemove}
+            onIssueRemove={onIssueRemove}
           />
         </div>
       </Paper>
@@ -60,12 +60,12 @@ const App = ({
 );
 
 const mapStateToProps = state => {
-  let todos = [...state.todos];
+  let issues = [...state.issues];
 
   if (state.filterToggled) {
-    todos = todos.filter(todo => !todo.completed);
+    issues = issues.filter(issue => !issue.completed);
   } else {
-    todos.sort((a, b) => {
+    issues.sort((a, b) => {
       if (a.completed > b.completed) {
         return 1;
       }
@@ -79,26 +79,26 @@ const mapStateToProps = state => {
   }
 
   return {
-    todos,
+    issues,
     filterToggled: state.filterToggled,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onTodoAdd: todo => {
-    dispatch(addTodo(todo));
+  onIssueAdd: issue => {
+    dispatch(addIssue(issue));
   },
-  onTodoComplete: todoId => {
-    dispatch(completeTodo(todoId));
+  onIssueComplete: issueId => {
+    dispatch(completeIssue(issueId));
   },
   onFilterToggle: () => {
     dispatch(toggleFilter());
   },
-  onEditToggle: todoId => {
-    dispatch(toggleEdit(todoId));
+  onEditToggle: issueId => {
+    dispatch(toggleEdit(issueId));
   },
-  onTodoRemove: todoId => {
-    dispatch(removeTodo(todoId));
+  onIssueRemove: issueId => {
+    dispatch(removeIssue(issueId));
   },
 });
 
