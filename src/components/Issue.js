@@ -82,6 +82,7 @@ const Issue = ({
           onClick={() => {
             onIssueRemove(issue.id);
           }}
+          color={red500}
         />
         <Checkbox
           label=""
