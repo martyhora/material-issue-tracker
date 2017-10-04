@@ -1,13 +1,10 @@
 import * as React from 'react';
 import Paper from 'material-ui/Paper';
-import Checkbox from 'material-ui/Checkbox';
-import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
 import IssueFormContainer from '../containers/IssueFormContainer';
 import { formatDate } from './IssueForm';
 import { red500 } from 'material-ui/styles/colors';
-import StarToggle from './StarToggle';
+import IssueActions from './IssueActions';
 
 const Issue = ({
   issue,
@@ -58,41 +55,13 @@ const Issue = ({
     </div>
 
     {!issue.isEdit && (
-      <div
-        style={{
-          float: 'right',
-          marginTop: issue.isEdit ? '15px' : 0,
-          width: '14%',
-        }}
-      >
-        <StarToggle
-          toggled={issue.isStarred}
-          onToggle={() => {
-            onIssueStarToggle(issue.id);
-          }}
-        />
-        <ModeEditIcon
-          style={styles.icon}
-          onClick={() => {
-            onEditToggle(issue.id);
-          }}
-        />
-        <DeleteIcon
-          style={styles.icon}
-          onClick={() => {
-            onIssueRemove(issue.id);
-          }}
-          color={red500}
-        />
-        <Checkbox
-          label=""
-          checked={issue.completed}
-          onCheck={() => {
-            onIssueComplete(issue.id);
-          }}
-          style={{ ...styles.icon, width: '40px' }}
-        />
-      </div>
+      <IssueActions
+        issue={issue}
+        onIssueStarToggle={onIssueStarToggle}
+        onEditToggle={onEditToggle}
+        onIssueRemove={onIssueRemove}
+        onIssueComplete={onIssueComplete}
+      />
     )}
   </Paper>
 );

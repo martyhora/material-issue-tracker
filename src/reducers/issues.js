@@ -2,7 +2,8 @@ import {
   ADD_ISSUE,
   COMPLETE_ISSUE,
   REMOVE_ISSUE,
-  TOGGLE_EDIT, TOGGLE_ISSUE_STAR,
+  TOGGLE_EDIT,
+  TOGGLE_ISSUE_STAR,
 } from '../actions/actionTypes';
 
 let id = 1;

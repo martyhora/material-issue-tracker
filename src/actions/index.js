@@ -3,7 +3,8 @@ import {
   COMPLETE_ISSUE,
   REMOVE_ISSUE,
   TOGGLE_EDIT,
-  TOGGLE_FILTER, TOGGLE_ISSUE_STAR,
+  TOGGLE_FILTER,
+  TOGGLE_ISSUE_STAR,
 } from './actionTypes';
 
 export const addIssue = issue => {
