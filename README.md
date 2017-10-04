@@ -1,6 +1,6 @@
 # Material Issue Tracker
 
-An issue tracker app with material design written by using React and Redux. Allows you to manage your project issues and set due dates.
+An issue tracker app with material design written by using React and Redux. Allows you to manage your project issues, star them, set due dates and filter through them via fulltext search.
 
 # Installation
 
