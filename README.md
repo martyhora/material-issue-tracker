@@ -1,6 +1,6 @@
-# Material TODO
+# Material Issue Tracker
 
-A TODO app with material design written by using React and Redux. Allows you to execute standard operations like adding, editing, completing and removing todos.
+An issue tracker app with material design written by using React and Redux. Allows you to manage your project issues and set due dates.
 
 # Installation
 
