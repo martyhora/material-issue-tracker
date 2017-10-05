@@ -19,7 +19,7 @@ const ProjectForm = ({
   cancelDialog,
 }) => (
   <div>
-    <Dialog title="Add a new project" modal={true} open={dialogOpen}>
+    <Dialog title={`${newProject.id ? 'Edit' : 'Add a new'} project`} modal={true} open={dialogOpen}>
       <TextField
         floatingLabelText="Project name"
         style={{ ...styles.textField, width: '65%' }}

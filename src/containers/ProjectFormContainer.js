@@ -57,6 +57,8 @@ export default class ProjectFormContainer extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.project && nextProps.project.id) {
       this.setState({ newProject: nextProps.project, dialogOpen: true });
+    } else {
+      this.setState({ newProject: defaultProject });
     }
   }
 
