@@ -101,6 +101,7 @@ const App = ({
         project={projectToEdit}
         onProjectAdd={onProjectAdd}
         onProjectEditCancel={onProjectEditCancel}
+        onProjectRemove={onProjectRemove}
       />
     </div>
   </MuiThemeProvider>

@@ -62,12 +62,20 @@ export default class ProjectFormContainer extends React.Component {
     }
   }
 
+  removeProject(projectId) {
+    this.props.onProjectRemove(projectId);
+
+    this.setState({ newProject: defaultProject, dialogOpen: false });
+  }
+
   render() {
     return (
       <ProjectForm
         newProject={this.state.newProject}
         error={this.state.error}
         dialogOpen={this.state.dialogOpen}
+        removeProject={this.removeProject.bind(this)}
+        onProjectRemove={this.props.onProjectRemove}
         toggleDialog={this.toggleDialog.bind(this)}
         cancelDialog={this.cancelDialog.bind(this)}
         onProjectAdd={this.onProjectAdd.bind(this)}
