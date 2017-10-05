@@ -21,7 +21,7 @@ const Issue = ({
         float: 'left',
         paddingTop: '5px',
         marginTop: issue.isEdit ? '-25px' : 0,
-        width: issue.isEdit ? '100%' : '84%',
+        width: issue.isEdit ? '100%' : '85%',
       }}
     >
       {issue.isEdit ? (

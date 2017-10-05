@@ -17,13 +17,23 @@ import {
   removeIssue,
   toggleIssueStar,
   updateFulltextFilter,
+  selectProject,
+  addProject,
+  removeProject,
+  onProjectEditSelect,
+  onProjectEditCancel,
 } from '../actions';
 import FilterForm from '../components/FilterForm';
+import ProjectFormContainer from './ProjectFormContainer';
+import ProjectsMenu from '../components/ProjectsMenu';
 
 const App = ({
   issues,
+  projects,
+  selectedProject,
   filterToggled,
   fulltextFilter,
+  projectToEdit,
   onIssueAdd,
   onIssueComplete,
   onFilterToggle,
@@ -31,46 +41,75 @@ const App = ({
   onIssueRemove,
   onIssueStarToggle,
   onFulltextFilterUpdate,
+  onProjectSelect,
+  onProjectAdd,
+  onProjectRemove,
+  onProjectEditSelect,
+  onProjectEditCancel,
 }) => (
   <MuiThemeProvider>
     <div>
       <AppBar title="Material Issue Tracker" />
-      <Paper style={styles.issueList}>
-        <div className="row">
-          <IssueFormContainer onIssueAdd={onIssueAdd} isEdit={false} />
-        </div>
 
-        <div className="row" style={styles.filter}>
-          <Toggle
-            label="Hide completed issues"
-            labelPosition="right"
-            toggled={filterToggled}
-            onToggle={onFilterToggle}
+      <div className="col-2">
+        <Paper>
+          <ProjectsMenu
+            projects={projects}
+            selectedProject={selectedProject}
+            onProjectSelect={onProjectSelect}
+            onProjectEditSelect={onProjectEditSelect}
           />
-        </div>
+        </Paper>
+      </div>
 
-        <FilterForm
-          onTextUpdate={onFulltextFilterUpdate}
-          text={fulltextFilter}
-        />
+      <div className="col-10">
+        <Paper style={styles.issueList}>
+          <div className="row">
+            <IssueFormContainer
+              onIssueAdd={onIssueAdd}
+              isEdit={false}
+              selectedProject={selectedProject}
+            />
+          </div>
 
-        <IssueList
-          issues={issues}
-          onIssueComplete={onIssueComplete}
-          onIssueAdd={onIssueAdd}
-          onEditToggle={onEditToggle}
-          onIssueRemove={onIssueRemove}
-          onIssueStarToggle={onIssueStarToggle}
-        />
-      </Paper>
+          <div className="row" style={styles.filter}>
+            <Toggle
+              label="Hide completed issues"
+              labelPosition="right"
+              toggled={filterToggled}
+              onToggle={onFilterToggle}
+            />
+          </div>
+
+          <FilterForm
+            onTextUpdate={onFulltextFilterUpdate}
+            text={fulltextFilter}
+          />
+
+          <IssueList
+            issues={issues}
+            onIssueComplete={onIssueComplete}
+            onIssueAdd={onIssueAdd}
+            onEditToggle={onEditToggle}
+            onIssueRemove={onIssueRemove}
+            onIssueStarToggle={onIssueStarToggle}
+          />
+        </Paper>
+      </div>
+
+      <ProjectFormContainer
+        project={projectToEdit}
+        onProjectAdd={onProjectAdd}
+        onProjectEditCancel={onProjectEditCancel}
+      />
     </div>
   </MuiThemeProvider>
 );
 
 const mapStateToProps = state => {
-  let issues = [...state.issues].filter(
-    issue => issue.text.indexOf(state.fulltextFilter) > -1
-  );
+  let issues = [...state.issues]
+    .filter(issue => issue.projectId === state.selectedProject)
+    .filter(issue => issue.text.indexOf(state.fulltextFilter) > -1);
 
   if (state.filterToggled) {
     issues = issues.filter(issue => !issue.completed);
@@ -100,8 +139,16 @@ const mapStateToProps = state => {
       });
   }
 
+  const { projects } = state;
+
   return {
     issues,
+    projects,
+    projectToEdit:
+      projects.filter(project => project.isEdit).length > 0
+        ? projects.filter(project => project.isEdit)[0]
+        : null,
+    selectedProject: state.selectedProject,
     fulltextFilter: state.fulltextFilter,
     filterToggled: state.filterToggled,
   };
@@ -128,6 +175,21 @@ const mapDispatchToProps = dispatch => ({
   },
   onFulltextFilterUpdate: text => {
     dispatch(updateFulltextFilter(text));
+  },
+  onProjectSelect: projectId => {
+    dispatch(selectProject(projectId));
+  },
+  onProjectAdd: project => {
+    dispatch(addProject(project));
+  },
+  onProjectRemove: projectId => {
+    dispatch(removeProject(projectId));
+  },
+  onProjectEditSelect: projectId => {
+    dispatch(onProjectEditSelect(projectId));
+  },
+  onProjectEditCancel: () => {
+    dispatch(onProjectEditCancel());
   },
 });
 

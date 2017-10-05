@@ -5,6 +5,7 @@ const defaultIssue = {
   text: '',
   dueDate: null,
   isStarred: false,
+  projectId: null,
 };
 
 export default class IssueFormContainer extends React.Component {
@@ -28,7 +29,10 @@ export default class IssueFormContainer extends React.Component {
       return;
     }
 
-    this.props.onIssueAdd(this.state.newIssue);
+    this.props.onIssueAdd({
+      ...this.state.newIssue,
+      projectId: this.props.selectedProject,
+    });
 
     this.setState({ newIssue: defaultIssue, error: false });
   }

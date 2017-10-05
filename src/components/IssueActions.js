@@ -17,7 +17,7 @@ const IssueActions = ({
     style={{
       float: 'right',
       marginTop: issue.isEdit ? '15px' : 0,
-      width: '14%',
+      width: '9%',
     }}
   >
     <StarToggle

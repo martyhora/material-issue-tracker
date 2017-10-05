@@ -14,10 +14,8 @@ const styles = {
     marginTop: '30px',
   },
   issueList: {
-    width: '55%',
+    paddingLeft: '1em',
     padding: '1em',
-    margin: 'auto',
-    marginTop: '100px',
   },
   clear: {
     clear: 'both',
@@ -41,6 +39,11 @@ const styles = {
   date: {
     color: 'rgba(0, 0, 0, 0.3)',
     fontSize: '0.65em',
+  },
+  addProjectButton: {
+    position: 'fixed',
+    bottom: '2em',
+    right: '2em',
   },
 };
 
