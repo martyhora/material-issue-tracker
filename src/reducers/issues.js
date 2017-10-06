@@ -1,3 +1,4 @@
+import shortid from 'shortid';
 import {
   ADD_ISSUE,
   COMPLETE_ISSUE,
@@ -5,8 +6,6 @@ import {
   TOGGLE_EDIT,
   TOGGLE_ISSUE_STAR,
 } from '../actions/actionTypes';
-
-let id = 1;
 
 const issues = (state = [], action) => {
   switch (action.type) {
@@ -20,7 +19,10 @@ const issues = (state = [], action) => {
         );
       }
 
-      return [...state, { ...action.issue, id: id++, completed: false }];
+      return [
+        ...state,
+        { ...action.issue, id: shortid.generate(), completed: false },
+      ];
     case COMPLETE_ISSUE:
       return state.map(issue => {
         return issue.id === action.issueId

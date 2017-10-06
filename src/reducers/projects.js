@@ -1,3 +1,4 @@
+import shortid from 'shortid';
 import {
   ADD_PROJECT,
   CANCEL_PROJECT_EDIT,
@@ -6,8 +7,6 @@ import {
 } from '../actions/actionTypes';
 
 const defaultState = [{ id: 1, name: 'Default project', isEdit: false }];
-
-let id = defaultState.length + 1;
 
 const projects = (state = defaultState, action) => {
   switch (action.type) {
@@ -21,7 +20,7 @@ const projects = (state = defaultState, action) => {
         );
       }
 
-      return [...state, { ...action.project, id: id++ }];
+      return [...state, { ...action.project, id: shortid.generate() }];
     case TOGGLE_PROJECT_EDIT:
       return state.map(
         project =>
