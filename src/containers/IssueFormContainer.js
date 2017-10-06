@@ -31,7 +31,9 @@ export default class IssueFormContainer extends React.Component {
 
     this.props.onIssueAdd({
       ...this.state.newIssue,
-      projectId: this.props.selectedProject,
+      projectId: this.props.selectedProject
+        ? this.props.selectedProject
+        : this.state.newIssue.projectId,
     });
 
     this.setState({ newIssue: defaultIssue, error: false });
