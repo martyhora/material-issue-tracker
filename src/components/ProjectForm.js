@@ -6,7 +6,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAddIcon from 'material-ui/svg-icons/content/add';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
-import { red500 } from 'material-ui/styles/colors';
+import { blueColor, redColor } from '../styles/colors';
 
 const validateForm = project => project.name.trim().length > 0;
 
@@ -46,22 +46,24 @@ const ProjectForm = ({
           onClick={() => {
             removeProject(newProject.id);
           }}
-          color={red500}
+          color={redColor}
         />
       )}
       <RaisedButton
         className="add-issue-button"
         label="Cancel"
         onClick={cancelDialog}
+        backgroundColor={redColor}
+        labelColor="#fff"
         style={{ ...styles.addButton, float: 'left', marginRight: '15px' }}
-        secondary={true}
       />
       <RaisedButton
         className="add-issue-button"
         label={`${newProject.id ? 'Edit' : 'Add'} project`}
         onClick={onProjectAdd}
         style={styles.addButton}
-        primary={true}
+        backgroundColor={blueColor}
+        labelColor="#fff"
         disabled={!validateForm(newProject)}
       />
     </Dialog>
@@ -69,7 +71,7 @@ const ProjectForm = ({
     <FloatingActionButton
       style={styles.addProjectButton}
       onClick={toggleDialog}
-      secondary={true}
+      backgroundColor={redColor}
     >
       <ContentAddIcon />
     </FloatingActionButton>

@@ -49,7 +49,7 @@ const App = ({
 }) => (
   <MuiThemeProvider>
     <div>
-      <AppBar title="Material Issue Tracker" />
+      <AppBar title="Material Issue Tracker" style={styles.appBar} />
 
       <div className="col-2">
         <Paper>

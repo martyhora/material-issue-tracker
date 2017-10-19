@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { List, ListItem } from 'material-ui/List';
-import { pink500 } from 'material-ui/styles/colors';
 import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import { redColor } from '../styles/colors';
 
 const ProjectsMenu = ({
   projects,
@@ -17,7 +17,7 @@ const ProjectsMenu = ({
         onClick={() => {
           onProjectSelect(project.id);
         }}
-        style={{ color: selectedProject === project.id ? pink500 : '#000' }}
+        style={{ color: selectedProject === project.id ? redColor : '#000' }}
         rightIcon={
           <ModeEditIcon
             onClick={() => {

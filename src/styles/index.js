@@ -1,4 +1,7 @@
 const styles = {
+  appBar: {
+    backgroundColor: '#f5be41',
+  },
   issue: {
     padding: '1em',
     marginTop: '0.75em',

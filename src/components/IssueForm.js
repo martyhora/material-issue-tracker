@@ -3,6 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import styles from '../styles';
+import { blueColor } from '../styles/colors';
 
 const validateForm = issue => issue.text.trim().length > 0;
 
@@ -46,7 +47,8 @@ const IssueForm = ({
       label={`${isEdit ? 'Edit' : 'Add'} issue`}
       onClick={onIssueAdd}
       style={styles.addButton}
-      primary={true}
+      backgroundColor={blueColor}
+      labelColor="#fff"
       disabled={!validateForm(newIssue)}
     />
   </div>
