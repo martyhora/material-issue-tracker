@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAddIcon from 'material-ui/svg-icons/content/add';
-import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import styles from '../styles';
 import { blueColor, redColor } from '../styles/colors';
 
@@ -58,20 +57,11 @@ const ProjectForm = ({
           labelColor="#fff"
           style={{ ...styles.addButton, float: 'left', marginRight: '15px' }}
         />
-
-        // <DeleteIcon
-        //   style={{ ...styles.icon, marginTop: '35px', marginRight: '10px' }}
-        //   onClick={() => {
-        //     removeProject(newProject.id);
-        //   }}
-        //   color={redColor}
-        // />
       )}
       <RaisedButton
         className="add-issue-button"
         label={`${newProject.id ? 'Edit' : 'Add'} project`}
         onClick={onProjectAdd}
-        style={styles.addButton}
         backgroundColor={blueColor}
         labelColor="#fff"
         disabled={!validateForm(newProject)}
@@ -79,7 +69,6 @@ const ProjectForm = ({
     </Dialog>
 
     <FloatingActionButton
-      // style={styles.addProjectButton}
       className="project-add-button"
       onClick={toggleDialog}
       backgroundColor={redColor}

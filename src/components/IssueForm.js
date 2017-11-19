@@ -2,7 +2,6 @@ import * as React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import styles from '../styles';
 import { blueColor } from '../styles/colors';
 
 const validateForm = issue => issue.text.trim().length > 0;
