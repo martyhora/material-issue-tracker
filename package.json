@@ -2,7 +2,7 @@
   "name": "material-issue-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://martyhora.github.io/material-issue-tracker/build",
+  "homepage": "https://martyhora.github.io/material-issue-tracker",
   "dependencies": {
     "material-ui": "^0.19.3",
     "react": "^16.0.0",
