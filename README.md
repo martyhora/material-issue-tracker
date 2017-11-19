@@ -4,7 +4,7 @@ An issue tracker app with material design written by using React and Redux. Allo
 
 # Demo
 
-A demo could be previewed here - https://martyhora.github.io/material-issue-tracker/build/
+A demo could be previewed here - https://martyhora.github.io/material-issue-tracker
 
 ![alt text](https://martyhora.cz/img/portfolio/thumbnails/5.png)
 
