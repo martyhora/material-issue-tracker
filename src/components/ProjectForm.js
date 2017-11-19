@@ -29,7 +29,6 @@ const ProjectForm = ({
     >
       <TextField
         floatingLabelText="Project name"
-        style={{ ...styles.textField, width: newProject.id ? '60%' : '65%' }}
         fullWidth={true}
         value={newProject.name}
         onChange={e => {
@@ -40,15 +39,6 @@ const ProjectForm = ({
         }}
         errorText={error ? 'Project description is required' : ''}
       />
-      {newProject.id && (
-        <DeleteIcon
-          style={{ ...styles.icon, marginTop: '35px', marginRight: '10px' }}
-          onClick={() => {
-            removeProject(newProject.id);
-          }}
-          color={redColor}
-        />
-      )}
       <RaisedButton
         className="add-issue-button"
         label="Cancel"
@@ -57,6 +47,26 @@ const ProjectForm = ({
         labelColor="#fff"
         style={{ ...styles.addButton, float: 'left', marginRight: '15px' }}
       />
+      {newProject.id && (
+        <RaisedButton
+          className="add-issue-button"
+          label="Remove"
+          onClick={() => {
+            removeProject(newProject.id);
+          }}
+          backgroundColor={redColor}
+          labelColor="#fff"
+          style={{ ...styles.addButton, float: 'left', marginRight: '15px' }}
+        />
+
+        // <DeleteIcon
+        //   style={{ ...styles.icon, marginTop: '35px', marginRight: '10px' }}
+        //   onClick={() => {
+        //     removeProject(newProject.id);
+        //   }}
+        //   color={redColor}
+        // />
+      )}
       <RaisedButton
         className="add-issue-button"
         label={`${newProject.id ? 'Edit' : 'Add'} project`}
@@ -69,7 +79,8 @@ const ProjectForm = ({
     </Dialog>
 
     <FloatingActionButton
-      style={styles.addProjectButton}
+      // style={styles.addProjectButton}
+      className="project-add-button"
       onClick={toggleDialog}
       backgroundColor={redColor}
     >

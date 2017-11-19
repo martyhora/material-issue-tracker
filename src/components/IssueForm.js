@@ -20,23 +20,25 @@ const IssueForm = ({
   isEdit,
 }) => (
   <div>
-    <TextField
-      floatingLabelText="Issue description"
-      style={styles.textField}
-      fullWidth={true}
-      value={newIssue.text}
-      onChange={e => {
-        onNewIssueTextUpdate(e.currentTarget.value);
-      }}
-      onKeyPress={e => {
-        onIssueSubmit(e.key);
-      }}
-      errorText={error ? 'Issue description is required' : ''}
-    />
+    <div className="text-field-wrapper">
+      <TextField
+        floatingLabelText="Issue description"
+        value={newIssue.text}
+        fullWidth={true}
+        onChange={e => {
+          onNewIssueTextUpdate(e.currentTarget.value);
+        }}
+        onKeyPress={e => {
+          onIssueSubmit(e.key);
+        }}
+        errorText={error ? 'Issue description is required' : ''}
+      />
+    </div>
     <DatePicker
-      style={styles.datepicker}
+      className="datepicker"
       formatDate={formatDate}
       value={newIssue.dueDate}
+      fullWidth={true}
       onChange={(e, date) => {
         onNewIssueDueDateUpdate(date);
       }}
@@ -46,7 +48,7 @@ const IssueForm = ({
       className="add-issue-button"
       label={`${isEdit ? 'Edit' : 'Add'} issue`}
       onClick={onIssueAdd}
-      style={styles.addButton}
+      // style={styles.addButton}
       backgroundColor={blueColor}
       labelColor="#fff"
       disabled={!validateForm(newIssue)}

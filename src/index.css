@@ -56,8 +56,80 @@ a {
     float: left;
 }
 
+.project-add-button {
+    position: fixed;
+    right: 2em;
+    bottom: 2em;
+}
+
+.actions {
+    float: right;
+    width: 9%;
+}
+
+.issue {
+    float: left;
+    padding-top: 5px;
+    width: 85%;
+}
+
+.issue--edit {
+    margin-top: -25px;
+    width: 100%;
+}
+
+.text-field-wrapper {
+    width: 70%;
+    float: left;
+    margin-right: 15px;
+}
+
+.project-text-field {
+    width: 65%;
+}
+
+.project-text-field--edit {
+    width: 60%;
+}
+
+.datepicker {
+    margin-top: 24px;
+    float: left;
+}
+
+.add-issue-button {
+    margin-top: 30px;
+    float: right;
+}
+
 @media only screen and (max-width: 768px) {
     [class*="col-"] {
         width: 100%;
+    }
+
+    .text-field-wrapper {
+        width: 100%;
+        float: none;
+    }
+
+    .datepicker {
+        float: none;
+        width: 100%;
+    }
+
+    .add-issue-button {
+        width: 100%;
+    }
+
+    .actions {
+        float: none;
+        width: auto;
+        margin-left: -2px;
+    }
+
+    .issue {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
     }
 }

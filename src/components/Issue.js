@@ -3,8 +3,8 @@ import Paper from 'material-ui/Paper';
 import styles from '../styles';
 import IssueFormContainer from '../containers/IssueFormContainer';
 import { formatDate } from './IssueForm';
-import { red500 } from 'material-ui/styles/colors';
 import IssueActions from './IssueActions';
+import { redColor } from '../styles/colors';
 
 const Issue = ({
   issue,
@@ -16,14 +16,7 @@ const Issue = ({
   onIssueStarToggle,
 }) => (
   <Paper style={styles.issue} className="row">
-    <div
-      style={{
-        float: 'left',
-        paddingTop: '5px',
-        marginTop: issue.isEdit ? '-25px' : 0,
-        width: issue.isEdit ? '100%' : '85%',
-      }}
-    >
+    <div className={`issue ${issue.isEdit ? 'issue--edit' : ''}`}>
       {issue.isEdit ? (
         <IssueFormContainer
           onIssueAdd={onIssueAdd}
@@ -46,7 +39,7 @@ const Issue = ({
               marginTop: '0.3em',
               float: 'right',
               fontSize: '0.7em',
-              color: new Date() >= issue.dueDate ? red500 : '#000',
+              color: new Date() >= issue.dueDate ? redColor : '#000',
             }}
           >
             {issue.dueDate ? `${formatDate(issue.dueDate)}` : ''}
